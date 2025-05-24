@@ -14,3 +14,6 @@ EXCRACT
 docker run --rm -t -v D:/uygulama_test/data:/data osrm/osrm-backend `
   osrm-extract -p /opt/foot.lua /data/foot/map.pbf
 
+partition 
+docker run --rm -t -v D:/uygulama_test/data:/data osrm/osrm-backend `
+  osrm-partition /data/bicycle/map.osrm

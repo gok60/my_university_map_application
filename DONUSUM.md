@@ -50,3 +50,27 @@ docker run --rm -t \
   -v "~/uygulama_test/data:/data" \
   osrm/osrm-backend \
   osrm-customize /data/bicycle/map.osrm
+
+
+
+
+
+
+
+  cd ~/uygulama_test
+
+docker run --rm -t \
+  -v "$(pwd)/data:/data" \
+  osrm/osrm-backend \
+  osrm-extract -p /opt/foot.lua /data/foot/map.pbf
+
+docker run --rm -t \
+  -v "$(pwd)/data:/data" \
+  osrm/osrm-backend \
+  osrm-partition /data/foot/map.osrm
+
+docker run --rm -t \
+  -v "$(pwd)/data:/data" \
+  osrm/osrm-backend \
+  osrm-customize /data/bicycle/map.osrm
+

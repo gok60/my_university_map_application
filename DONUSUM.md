@@ -26,3 +26,27 @@ docker run --rm -t -v D:/uygulama_test/data:/data osrm/osrm-backend `
 sunucu kısmı : docker run -d -p 5000:5000 -v D:/uygulama_test/data/foot:/data osrm/osrm-backend osrm-routed --algorithm mld /data/map.osrm
 docker run -d -p 5001:5000 -v D:/uygulama_test/data/car:/data osrm/osrm-backend osrm-routed --algorithm mld /data/map.osrm
 docker run -d -p 5002:5000 -v D:/uygulama_test/data/bicycle:/data osrm/osrm-backend osrm-routed --algorithm mld /data/map.osrm
+
+
+
+
+
+
+
+ 1) Extract
+docker run --rm -t \
+  -v "~/uygulama_test/data:/data" \
+  osrm/osrm-backend \
+  osrm-extract -p /opt/foot.lua /data/foot/map.pbf
+
+# 2) Partition
+docker run --rm -t \
+  -v "~/uygulama_test/data:/data" \
+  osrm/osrm-backend \
+  osrm-partition /data/foot/map.osrm
+
+# 3) Customize
+docker run --rm -t \
+  -v "~/uygulama_test/data:/data" \
+  osrm/osrm-backend \
+  osrm-customize /data/bicycle/map.osrm

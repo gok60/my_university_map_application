@@ -600,20 +600,24 @@ const handleEditBirimSubmit = async () => {
     }
   }, []);
  // MapComponent.js içinde import’ların hemen altı:
- const prefixMap = {
-  driving:  'car',
-  cycling:  'bicycle',
-  walking:  'foot',
-};
-
-const calculateRoute = useCallback(async (start, end, mode) => {
+ const calculateRoute = useCallback(async (start, end, mode) => {
   try {
-        // Yeni prefix‑based URL:
-        const prefix = prefixMap[mode] || 'foot';
-          const url =
-        `http://testharita.hacettepe.edu.tr/${prefix}/route/v1/${mode}/` +
-        `${start.lng},${start.lat};${end.lng},${end.lat}` +
-        `?overview=full&geometries=geojson`;
+    // Koordinatları hazırla
+    const coords = `${start.lng},${start.lat};${end.lng},${end.lat}`;
+
+    // mode'a göre tek bir profile ismi üret
+    const profile = 
+      mode === 'walking' ? 'foot' :
+      mode === 'cycling'  ? 'bicycle' :
+      /* driving */        'car';
+    const port =
+      profile === 'foot'    ? 5000 :
+      profile === 'car'     ? 5001 :
+                              5002;  // bicycle
+    // Tek segment'li URL  
+    const url = 
+      `http://localhost:${port}/route/v1/${profile}/${coords}` +
+      `?overview=full&geometries=geojson`
 
     console.log('Rota Hesaplama URL:', url);
     setRouteData(null);

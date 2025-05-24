@@ -7,3 +7,10 @@ docker run --rm `
 
 
 docker run --rm -v "$(pwd):/data" stefda/osmium-tool osmium cat -f pbf -o /data/map.pbf /data/map.osm
+
+
+
+EXCRACT
+docker run --rm -t -v D:/uygulama_test/data:/data osrm/osrm-backend `
+  osrm-extract -p /opt/foot.lua /data/foot/map.pbf
+

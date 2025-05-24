@@ -17,3 +17,6 @@ docker run --rm -t -v D:/uygulama_test/data:/data osrm/osrm-backend `
 partition 
 docker run --rm -t -v D:/uygulama_test/data:/data osrm/osrm-backend `
   osrm-partition /data/bicycle/map.osrm
+CUSTOMİZE
+docker run --rm -t -v D:/uygulama_test/data:/data osrm/osrm-backend `
+  osrm-customize /data/foot/map.osrm
